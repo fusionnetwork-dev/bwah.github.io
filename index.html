@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BWAH VR</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAHFlJREFUeJztXXl8VdW5/9Ze58597pkcyJwECGEmCQIJSgUEa6tWraLWWsdW29dqa1ut09fntV577dS+9r5qfbWDrVYriqhVcQJBhHlMCCRkJAlJTpJz7n3uPev9sSBOIJAESBB6v58PX/ztvdZ6f+vb613rXeu31jow9M/QP0P/DP0z9M8/V+P7Cq7Xa1u27vBs9HnFJTqdmpiW/Xm+d4dUu93M3NzMxQxDS5kM4Ag=">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Fredoka:wght@300;400;500;600&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" style="stop-color:%2387CEEB;stop-opacity:1" /><stop offset="100%" style="stop-color:%234169E1;stop-opacity:1" /></linearGradient></defs><rect width="400" height="400" fill="url(%23skyGrad)"/><g fill="%23FFFFFF" opacity="0.8"><circle cx="60" cy="80" r="25"/><circle cx="80" cy="75" r="20"/><circle cx="100" cy="85" r="15"/><circle cx="200" cy="60" r="30"/><circle cx="225" cy="55" r="25"/><circle cx="250" cy="65" r="20"/><circle cx="320" cy="90" r="22"/><circle cx="340" cy="85" r="18"/></g><rect x="0" y="300" width="400" height="100" fill="%2332CD32"/><g fill="%2322AA22"><rect x="50" y="250" width="15" height="50"/><rect x="120" y="240" width="20" height="60"/><rect x="200" y="245" width="18" height="55"/><rect x="280" y="250" width="16" height="50"/><rect x="350" y="240" width="22" height="60"/></g><g fill="%2328A028"><circle cx="57.5" cy="240" r="25"/><circle cx="130" cy="225" r="30"/><circle cx="209" cy="235" r="28"/><circle cx="288" cy="240" r="26"/><circle cx="361" cy="220" r="35"/></g></svg>');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #2c3e50;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    .nav-bar {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 0;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+    
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5em;
+      background: linear-gradient(135deg, #4169E1 0%, #87CEEB 50%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 0 rgba(65, 105, 225, 0.15);
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: #4169E1;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(65, 105, 225, 0.3);
+    }
+    
+    .main-section {
+      text-align: center;
+      padding: 100px 30px 80px;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 50px 20px;
+      border-radius: 35px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    
+    .main-section::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      background: linear-gradient(45deg, #4169E1, #87CEEB, #FFFFFF);
+      border-radius: 39px;
+      z-index: -1;
+    }
+    
+    .big-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 4.2em;
+      background: linear-gradient(135deg, #4169E1 0%, #87CEEB 50%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 30px;
+      text-shadow: 4px 4px 0 rgba(65, 105, 225, 0.15);
+      transform: rotate(-2deg);
+    }
+    
+    .description {
+      font-size: 1.4em;
+      color: #34495e;
+      margin-bottom: 50px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+    
+    .download-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      color: white;
+      padding: 20px 50px;
+      font-size: 1.5em;
+      font-family: 'Fredoka One', cursive;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(65, 105, 225, 0.4);
+      transition: all 0.3s ease;
+      transform: rotate(1deg);
+      border: 4px solid white;
+    }
+    
+    .download-btn:hover {
+      transform: rotate(0deg) translateY(-5px) scale(1.08);
+      box-shadow: 0 12px 35px rgba(65, 105, 225, 0.5);
+    }
+    
+    .content-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 35px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+    
+    .info-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+      border-left: 8px solid #4169E1;
+      transform: rotate(0.5deg);
+      transition: all 0.4s ease;
+    }
+    
+    .info-box:nth-child(2) {
+      transform: rotate(-0.8deg);
+      border-left-color: #87CEEB;
+    }
+    
+    .info-box:nth-child(3) {
+      transform: rotate(0.3deg);
+      border-left-color: #5a9fd4;
+    }
+    
+    .info-box:hover {
+      transform: rotate(0deg) translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .info-box h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2em;
+      color: #4169E1;
+      margin-bottom: 20px;
+    }
+    
+    .info-box p {
+      color: #34495e;
+      font-size: 1.2em;
+      line-height: 1.7;
+    }
+    
+    .bottom-section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 30px;
+      margin: 50px 20px 30px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .bottom-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8em;
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 25px;
+      transform: rotate(-1deg);
+    }
+    
+    .bottom-section .download-btn {
+      margin-top: 30px;
+      transform: rotate(-0.5deg);
+    }
+    
+    .footer-info {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      margin: 30px 20px;
+      border-radius: 20px;
+      color: #7f8c8d;
+      font-size: 1em;
+    }
+    
+    .wavy-divider {
+      height: 60px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff' opacity='0.9'/%3E%3C/svg%3E") repeat-x;
+      background-size: 1200px 120px;
+    }
+    
+    .gallery-title {
+      text-align: center;
+      padding: 40px 20px 20px;
+      max-width: 1000px;
+      margin: 50px auto 0;
+    }
+    
+    .gallery-title h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5em;
+      background: linear-gradient(135deg, #4169E1 0%, #87CEEB 50%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 4px 4px 0 rgba(65, 105, 225, 0.15);
+      margin: 0;
+      transform: rotate(-1.5deg);
+    }
+    
+    .gallery-section {
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.95);
+      margin: 20px 20px 40px;
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .gallery-container {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      justify-content: center;
+    }
+    
+    .gallery-display {
+      text-align: center;
+      flex: 1;
+      max-width: 650px;
+    }
+    
+    .gallery-display img {
+      width: 100%;
+      max-width: 550px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .gallery-display img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+    
+    .gallery-arrow {
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 2em;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(65, 105, 225, 0.4);
+      transition: all 0.3s ease;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: bold;
+    }
+    
+    .gallery-arrow:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(65, 105, 225, 0.5);
+    }
+    
+    .gallery-arrow:active {
+      transform: scale(0.9);
+    }
+    
+    .gallery-dots {
+      margin-top: 25px;
+      text-align: center;
+    }
+    
+    .dot {
+      height: 14px;
+      width: 14px;
+      margin: 0 8px;
+      background-color: #bdc3c7;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .dot:hover {
+      background-color: #87CEEB;
+      transform: scale(1.3);
+    }
+    
+    .dot.active {
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      transform: scale(1.4);
+    }
+    
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .parallax {
+      transition: transform 0.2s ease-out;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 60%, 100% {
+        transform: translateY(0) scale(1.05);
+      }
+      40% {
+        transform: translateY(-12px) scale(1.05);
+      }
+      80% {
+        transform: translateY(-6px) scale(1.05);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .nav-menu {
+        gap: 25px;
+      }
+      
+      .big-title {
+        font-size: 3.2em;
+      }
+      
+      .gallery-title h2 {
+        font-size: 2.8em;
+      }
+      
+      .main-section {
+        margin: 30px 15px;
+        padding: 60px 25px 50px;
+      }
+      
+      .content-sections {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+      }
+      
+      .info-box {
+        transform: none !important;
+      }
+      
+      .gallery-display img {
+        max-width: 400px;
+        height: 250px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .big-title {
+        font-size: 2.5em;
+      }
+      
+      .gallery-title h2 {
+        font-size: 2.2em;
+      }
+      
+      .description {
+        font-size: 1.2em;
+      }
+      
+      .download-btn {
+        font-size: 1.3em;
+        padding: 15px 40px;
+      }
+      
+      .gallery-display img {
+        max-width: 300px;
+        height: 200px;
+      }
+      
+      .gallery-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-content">
+      <div class="logo">BWAH</div>
+      <ul class="nav-menu">
+        <li><a href="#main">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#download">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wavy-divider"></div>
+
+  <div class="gallery-title scroll-reveal">
+    <h2>BWAH VR GALLERY</h2>
+  </div>
+
+  <section class="gallery-section scroll-reveal">
+    <div class="gallery-container">
+      <button class="gallery-arrow gallery-prev" onclick="changeImage(-1)">‹</button>
+      <div class="gallery-display">
+        <img id="gallery-image" src="https://scontent.oculuscdn.com/v/t64.5771-25/491819511_1236263458241267_4845751526613337593_n.jpg?stp=dst-jpg_q92_s230x230_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vDuRTYAeRkkQ7kNvwGji-3r&_nc_oc=AdnNU99IuJ3RAMnkmMLuhmo9-8MlCuQCgI1A_R2lRGvNlqCVuIoIPGsYTBRbYQLm8_4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfUEgiWkZkVfkC9I1m6hznL7AN74hPxO__rFhoSJYjc6Vw&oe=689DE97E" alt="BWAH VR Screenshot">
+        <div class="gallery-dots">
+          <span class="dot active" onclick="currentImage(1)"></span>
+          <span class="dot" onclick="currentImage(2)"></span>
+          <span class="dot" onclick="currentImage(3)"></span>
+          <span class="dot" onclick="currentImage(4)"></span>
+          <span class="dot" onclick="currentImage(5)"></span>
+          <span class="dot" onclick="currentImage(6)"></span>
+        </div>
+      </div>
+      <button class="gallery-arrow gallery-next" onclick="changeImage(1)">›</button>
+    </div>
+  </section>
+
+  <section class="main-section scroll-reveal" id="main">
+    <h1 class="big-title">BWAH VR!</h1>
+    <p class="description">
+      Step into the world of Bwah, where your green thumb brings life to a charming garden full of endless possibilities. Start with simple seeds and patiently nurture them through every stage of growth—from tiny sprouts to fully blossomed plants. Watch as your garden evolves day by day, bursting with vibrant colors, unique plant varieties, and hidden treasures waiting to be discovered.
+    </p>
+    <p class="description">
+      In Bwah, gardening is more than just planting—it's an adventure in creativity and patience. Experiment with different plant combinations, care for your garden by watering and tending to your crops, and unlock special upgrades that enhance your gardening experience. The environment reacts to your care, rewarding your efforts with lush growth and a thriving ecosystem.
+    </p>
+    <p class="description">
+      Whether you’re a seasoned gardener or just starting out, Bwah invites you to relax, unwind, and find joy in cultivating your own peaceful paradise. Build your dream garden, share your progress, and immerse yourself in a world where growth is always just around the corner.
+    </p>
+    <a href="https://www.meta.com/experiences/bwah/9756772107679490/" class="download-btn">
+      Get BWAH Now!
+    </a>
+  </section>
+
+  <div class="content-sections">
+    <div class="info-box scroll-reveal">
+      <h2>Plant & Grow</h2>
+      <p>Begin with tiny seeds and watch them transform into extraordinary plants! Nurture them with water and care, creating a dazzling garden filled with vibrant colors and exotic flora.</p>
+    </div>
+
+    <div class="info-box scroll-reveal">
+      <h2>Fun for All</h2>
+      <p>Whether you're a gardening newbie or a plant enthusiast, BWAH is intuitive and endlessly fun. Design your dream garden oasis and share your creations with friends!</p>
+    </div>
+
+    <div class="info-box scroll-reveal">
+      <h2>Ever-Changing Gardens</h2>
+      <p>Your garden evolves daily! Uncover rare plants, unlock new areas, and experiment with unique combinations to build the most spectacular garden imaginable.</p>
+    </div>
+  </div>
+
+  <section class="bottom-section scroll-reveal" id="download">
+    <h2>Start Your Adventure!</h2>
+    <p>Download BWAH VR now and embark on a gardening journey on Meta Quest. Unleash your virtual green thumb today!</p>
+    <a href="https://www.meta.com/experiences/bwah/9756772107679490/" class="download-btn">
+      Download for Meta Quest
+    </a>
+  </section>
+
+  <footer class="footer-info">
+    <p>&copy; 2025 BWAH VR - Crafted with ❤️ for garden lovers worldwide</p>
+    <p style="margin-top: 15px;">
+      <a href="https://sites.google.com/view/bwah/home" target="_blank" style="color: #4169E1; text-decoration: none; font-weight: 500; transition: all 0.2s ease;">Privacy Policy</a>
+    </p>
+    <p style="margin-top: 10px; font-size: 0.9em; color: #95a5a6;">
+      Created by <span style="color: #4169E1; font-weight: 500;">swaq</span> (@swaqwtf)
+    </p>
+  </footer>
+
+  <script>
+    // Gallery functionality
+    const images = [
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491819511_1236263458241267_4845751526613337593_n.jpg?stp=dst-jpg_q92_s230x230_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vDuRTYAeRkkQ7kNvwGji-3r&_nc_oc=AdnNU99IuJ3RAMnkmMLuhmo9-8MlCuQCgI1A_R2lRGvNlqCVuIoIPGsYTBRbYQLm8_4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfUEgiWkZkVfkC9I1m6hznL7AN74hPxO__rFhoSJYjc6Vw&oe=689DE97E",
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491823968_928694079425438_2120244631637651714_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=YqqECbs99j8Q7kNvwFwtxEN&_nc_oc=Adm-wmt1ZND3IU-UD1ap0UIbmXjnFOqIDsaHXTUO2xYvBKr4jLm_lvidTuzjaQfjMBI&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfV9DLZ4HNw5enFnCS6SoIJzrJC4pJc2uPstXkzMVhbt6A&oe=689DFF9D",
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491822045_24192532300396728_714974890015067677_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=eo-5Vl8PMToQ7kNvwG1m0Fd&_nc_oc=AdknT93XlRUjKIHnxQ6s1myayiBILpQLiuLP9N7dj3_-yCPI1E-OT3k1p-kR6icivW0&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfXfAoMNWOYygh0inEtEVy4uzVLCzoZE4u8nQvWSoNUP2Q&oe=689E095E",
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491822467_1373443673755731_7279007955872785569_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=O-hGiMHuWmUQ7kNvwFu4A_m&_nc_oc=Adnkik9TeAm6Eg0Ki_YlWmhAN3k_pBQxyU4KsZnmCzBwolDP6IW8tbtICWJecZV05-8&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfWTfxI9A_7HzLiYhztlhnIvT04kXYCEsG-5uqzm1XDpfg&oe=689DFA68",
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491818943_3603985879896869_2753622102937368121_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=4yyprQgLbxAQ7kNvwE-qp74&_nc_oc=Adn4MtG2kIPrKaS97nYqYgB9uaBye1LpAzVyup6iYo0yB-aq7i2InrIghihJM4vZmV4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfV8ACQsqs4A4Zdd7t9OgFaGI_rZEmx8Y84GCaltY7kqgw&oe=689DDBA1",
+      "https://scontent.oculuscdn.com/v/t64.5771-25/491820047_3932586006958921_4620117588743480830_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=iFAlhC4-JVUQ7kNvwEbrG93&_nc_oc=AdmHsKV4rSPfZO-fKmCtVDuuhWhI2NJh4ACIYO7pkYvlQaZ7B_VOZZstfugO4NRqK0Q&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfWBdYghW2k-Xvoit5RzvPHoFrU1KcnsHO1z4HVz_8Ub4Q&oe=689E0494"
+    ];
+    
+    let currentImageIndex = 0;
+    
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      
+      if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+      }
+      
+      updateGallery();
+    }
+    
+    function currentImage(index) {
+      currentImageIndex = index - 1;
+      updateGallery();
+    }
+    
+    function updateGallery() {
+      const galleryImage = document.getElementById('gallery-image');
+      galleryImage.style.opacity = 0;
+      setTimeout(() => {
+        galleryImage.src = images[currentImageIndex];
+        galleryImage.style.opacity = 1;
+      }, 300);
+      
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentImageIndex);
+      });
+    }
+    
+    // Auto-slide every 5 seconds
+    let autoSlide = setInterval(() => changeImage(1), 5000);
+    
+    // Pause auto-slide on hover
+    document.querySelector('.gallery-section').addEventListener('mouseenter', () => {
+      clearInterval(autoSlide);
+    });
+    
+    document.querySelector('.gallery-section').addEventListener('mouseleave', () => {
+      autoSlide = setInterval(() => changeImage(1), 5000);
+    });
+    
+    // Scroll reveal animations
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      const windowHeight = window.innerHeight;
+      const elementVisible = 150;
+      
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        
+        if (elementTop < windowHeight - elementVisible && elementBottom > elementVisible) {
+          element.classList.add('revealed');
+        } else {
+          element.classList.remove('revealed');
+        }
+      });
+    }
+    
+    // Throttled scroll handler
+    let ticking = false;
+    
+    function updateOnScroll() {
+      const scrolled = window.pageYOffset;
+      const header = document.querySelector('.nav-bar');
+      
+      // Header scroll effect
+      if (header) {
+        header.style.background = scrolled > 50 
+          ? 'rgba(255, 255, 255, 0.98)' 
+          : 'rgba(255, 255, 255, 0.95)';
+        header.style.boxShadow = scrolled > 50 
+          ? '0 2px 20px rgba(0, 0, 0, 0.15)' 
+          : '0 2px 15px rgba(0, 0, 0, 0.1)';
+      }
+      
+      // Parallax background
+      document.body.style.backgroundPosition = `center ${scrolled * 0.3}px`;
+      
+      // Trigger reveal animations
+      revealOnScroll();
+      
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
+      }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('load', revealOnScroll);
+    
+    // Button bounce effect
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', function() {
+        this.style.animation = 'bounce 0.5s ease';
+      });
+      btn.addEventListener('animationend', function() {
+        this.style.animation = '';
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.nav-menu a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
