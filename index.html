@@ -11,14 +11,14 @@
   <link rel="apple-touch-icon" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&">
   <!-- Open Graph metadata for Discord embed -->
   <meta property="og:title" content="BWAH VR UNOFFICIAL SITE">
-  <meta property="og:description" content="BWAH VR UNOFFICIAL SITE - Step into the world of Bwah, where your green thumb brings life to a charming garden full of endless possibilities.">
+  <meta property="og:description" content="BWAH VR UNOFFICIAL SITE">
   <meta property="og:image" content="photos/image1.jpg">
   <meta property="og:url" content="https://www.meta.com/experiences/bwah/9756772107679490/">
   <meta property="og:type" content="website">
   <!-- Twitter Card metadata for additional compatibility -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BWAH VR UNOFFICIAL SITE">
-  <meta name="twitter:description" content="BWAH VR UNOFFICIAL SITE - Step into the world of Bwah, where your green thumb brings life to a charming garden full of endless possibilities.">
+  <meta name="twitter:description" content="BWAH VR UNOFFICIAL SITE">
   <meta name="twitter:image" content="photos/image1.jpg">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Fredoka:wght@300;400;500;600&display=swap');
@@ -486,12 +486,12 @@
              sizes="(max-width: 768px) 400px, (max-width: 480px) 300px, 550px"
              alt="BWAH VR screenshot">
         <div class="gallery-dots">
-          <span class="dot active" onclick="currentImage(1)"></span>
+          <span class="dot active" onclick="currentImage(0)"></span>
+          <span class="dot" onclick="currentImage(1)"></span>
           <span class="dot" onclick="currentImage(2)"></span>
           <span class="dot" onclick="currentImage(3)"></span>
           <span class="dot" onclick="currentImage(4)"></span>
           <span class="dot" onclick="currentImage(5)"></span>
-          <span class="dot" onclick="currentImage(6)"></span>
         </div>
       </div>
       <button class="gallery-arrow gallery-next" onclick="changeImage(1)">›</button>
@@ -575,7 +575,7 @@
     }
     
     function currentImage(index) {
-      currentImageIndex = index - 1;
+      currentImageIndex = index;
       updateGallery();
     }
     
