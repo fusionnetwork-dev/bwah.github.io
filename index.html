@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Preload first image for faster initial display -->
+  <link rel="preload" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&" as="image">
   <title>BWAH VR</title>
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAHFlJREFUeJztXXl8VdW5/9Ze58597pkcyJwECGEmCQIJSgUEa6tWraLWWsdW29dqa1ut09fntV577dS+9r5qfbWDrVYriqhVcQJBhHlMCCRkJAlJTpJz7n3uPev9sSBOIJAESBB6v58PX/ztvdZ6f+vb613rXeu31jow9M/QP0P/DP0z9M8/V+P7Cq7Xa1u27vBs9HnFJTqdmpiW/Xm+d4dUu93M3NzMxQxDS5kM4Ag=">
   <style>
@@ -281,16 +283,20 @@
     .gallery-display img {
       width: 100%;
       max-width: 550px;
-      height: 350px;
-      object-fit: cover;
+      height: auto; /* Preserve aspect ratio */
+      max-height: 350px; /* Cap height to avoid oversized images */
+      object-fit: contain; /* Ensure entire image is visible without cropping */
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       transition: all 0.4s ease;
+      image-rendering: -webkit-optimize-contrast; /* Enhance sharpness */
+      filter: contrast(1.05) brightness(1.05); /* Subtle enhancement for clarity */
     }
     
     .gallery-display img:hover {
       transform: scale(1.05);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+      filter: contrast(1.1) brightness(1.1); /* Slightly stronger effect on hover */
     }
     
     .gallery-arrow {
@@ -404,7 +410,7 @@
       
       .gallery-display img {
         max-width: 400px;
-        height: 250px;
+        max-height: 250px;
       }
     }
     
@@ -428,7 +434,7 @@
       
       .gallery-display img {
         max-width: 300px;
-        height: 200px;
+        max-height: 200px;
       }
       
       .gallery-arrow {
@@ -461,7 +467,12 @@
     <div class="gallery-container">
       <button class="gallery-arrow gallery-prev" onclick="changeImage(-1)">‹</button>
       <div class="gallery-display">
-        <img id="gallery-image" src="https://scontent.oculuscdn.com/v/t64.5771-25/491819511_1236263458241267_4845751526613337593_n.jpg?stp=dst-jpg_q92_s230x230_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vDuRTYAeRkkQ7kNvwGji-3r&_nc_oc=AdnNU99IuJ3RAMnkmMLuhmo9-8MlCuQCgI1A_R2lRGvNlqCVuIoIPGsYTBRbYQLm8_4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfUEgiWkZkVfkC9I1m6hznL7AN74hPxO__rFhoSJYjc6Vw&oe=689DE97E" alt="BWAH VR Screenshot">
+        <img id="gallery-image" 
+             src="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&" 
+             srcset="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5& 1x, 
+                     https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5& 2x"
+             sizes="(max-width: 768px) 400px, (max-width: 480px) 300px, 550px"
+             alt="BWAH VR screenshot">
         <div class="gallery-dots">
           <span class="dot active" onclick="currentImage(1)"></span>
           <span class="dot" onclick="currentImage(2)"></span>
@@ -529,12 +540,12 @@
   <script>
     // Gallery functionality
     const images = [
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491819511_1236263458241267_4845751526613337593_n.jpg?stp=dst-jpg_q92_s230x230_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=vDuRTYAeRkkQ7kNvwGji-3r&_nc_oc=AdnNU99IuJ3RAMnkmMLuhmo9-8MlCuQCgI1A_R2lRGvNlqCVuIoIPGsYTBRbYQLm8_4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfUEgiWkZkVfkC9I1m6hznL7AN74hPxO__rFhoSJYjc6Vw&oe=689DE97E",
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491823968_928694079425438_2120244631637651714_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=YqqECbs99j8Q7kNvwFwtxEN&_nc_oc=Adm-wmt1ZND3IU-UD1ap0UIbmXjnFOqIDsaHXTUO2xYvBKr4jLm_lvidTuzjaQfjMBI&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfV9DLZ4HNw5enFnCS6SoIJzrJC4pJc2uPstXkzMVhbt6A&oe=689DFF9D",
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491822045_24192532300396728_714974890015067677_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=110&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=eo-5Vl8PMToQ7kNvwG1m0Fd&_nc_oc=AdknT93XlRUjKIHnxQ6s1myayiBILpQLiuLP9N7dj3_-yCPI1E-OT3k1p-kR6icivW0&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfXfAoMNWOYygh0inEtEVy4uzVLCzoZE4u8nQvWSoNUP2Q&oe=689E095E",
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491822467_1373443673755731_7279007955872785569_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=105&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=O-hGiMHuWmUQ7kNvwFu4A_m&_nc_oc=Adnkik9TeAm6Eg0Ki_YlWmhAN3k_pBQxyU4KsZnmCzBwolDP6IW8tbtICWJecZV05-8&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfWTfxI9A_7HzLiYhztlhnIvT04kXYCEsG-5uqzm1XDpfg&oe=689DFA68",
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491818943_3603985879896869_2753622102937368121_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=108&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=4yyprQgLbxAQ7kNvwE-qp74&_nc_oc=Adn4MtG2kIPrKaS97nYqYgB9uaBye1LpAzVyup6iYo0yB-aq7i2InrIghihJM4vZmV4&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfV8ACQsqs4A4Zdd7t9OgFaGI_rZEmx8Y84GCaltY7kqgw&oe=689DDBA1",
-      "https://scontent.oculuscdn.com/v/t64.5771-25/491820047_3932586006958921_4620117588743480830_n.jpg?stp=dst-jpg_q92_s144x144_tt6&_nc_cat=104&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=iFAlhC4-JVUQ7kNvwEbrG93&_nc_oc=AdmHsKV4rSPfZO-fKmCtVDuuhWhI2NJh4ACIYO7pkYvlQaZ7B_VOZZstfugO4NRqK0Q&_nc_zt=3&_nc_ht=scontent.oculuscdn.com&oh=00_AfWBdYghW2k-Xvoit5RzvPHoFrU1KcnsHO1z4HVz_8Ub4Q&oe=689E0494"
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&",
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403974072987025418/491823968_928694079425438_2120244631637651714_n.jpg?ex=6899803f&is=68982ebf&hm=bda0b986385f2e34cb530ebb1ed6f05e9e3005544b8036e639abcd8ea3cfedef&",
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973914727551079/491822045_24192532300396728_714974890015067677_n.jpg?ex=68998019&is=68982e99&hm=8a335bf3a2ab329353a44f67b8f842d6ade3d1f1793d70893b00c348e29fce18&",
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973859564064839/491822467_1373443673755731_7279007955872785569_n.jpg?ex=6899800c&is=68982e8c&hm=42b3e1aa794b575e245cb6d19c2bb782b76ad396e8cbcc22cd55f4945a75b710&",
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973833358184520/491818943_3603985879896869_2753622102937368121_n.jpg?ex=68998006&is=68982e86&hm=ccfe71710df8704cee0400156633bf244d4e363ba739cba2cfcbe9acb8997959&",
+      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973813258944542/491820047_3932586006958921_4620117588743480830_n.jpg?ex=68998001&is=68982e81&hm=a9be48c693154f86512812cf69a2bb86f3c7b5a48fa264c81e7d2aeb9f1d3eae&"
     ];
     
     let currentImageIndex = 0;
@@ -561,6 +572,8 @@
       galleryImage.style.opacity = 0;
       setTimeout(() => {
         galleryImage.src = images[currentImageIndex];
+        // Update srcset dynamically to match current image
+        galleryImage.srcset = `${images[currentImageIndex]} 1x, ${images[currentImageIndex]} 2x`;
         galleryImage.style.opacity = 1;
       }, 300);
       
