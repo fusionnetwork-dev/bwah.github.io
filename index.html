@@ -459,6 +459,95 @@
       margin-top: 5px;
     }
     
+    .planner-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 30px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .planner-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8em;
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      transform: rotate(-1deg);
+    }
+    
+    .planner-canvas {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      min-height: 300px;
+      background: #f5f6fa;
+      border: 2px dashed #87CEEB;
+      border-radius: 15px;
+      padding: 10px;
+      position: relative;
+    }
+    
+    .plant {
+      width: 50px;
+      height: 50px;
+      background-size: cover;
+      cursor: move;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .plant-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .spotlight-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 30px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .spotlight-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8em;
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      transform: rotate(-1deg);
+    }
+    
+    .spotlight-item {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .sound-control {
+      margin-top: 20px;
+    }
+    
+    .sound-toggle, .volume-slider {
+      margin: 10px 0;
+    }
+    
     @media (max-width: 768px) {
       .nav-content {
         flex-direction: column;
@@ -502,6 +591,16 @@
       
       .review {
         padding: 15px;
+      }
+      
+      .planner-canvas {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .plant-options {
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
     
@@ -548,6 +647,15 @@
       
       .review {
         padding: 10px;
+      }
+      
+      .planner-canvas {
+        min-height: 200px;
+      }
+      
+      .plant {
+        width: 40px;
+        height: 40px;
       }
     }
   </style>
@@ -643,6 +751,35 @@
     <p style="font-size: 0.9em; color: #7f8c8d; margin-top: 15px;">See all reviews on <a href="https://www.meta.com/experiences/bwah/9756772107679490/#reviews" target="_blank" style="color: #4169E1; text-decoration: none;">Meta Quest Store</a></p>
   </section>
 
+  <section class="planner-section scroll-reveal" id="planner">
+    <h2>Garden Planner</h2>
+    <p>Design your dream garden! Drag plants to the canvas and preview your layout.</p>
+    <div class="planner-canvas" id="dropZone">
+      <div class="plant-options">
+        <div class="plant" id="plant1" style="background-image: url('https://via.placeholder.com/50?text=Carrot+Seed')" draggable="true"></div>
+        <div class="plant" id="plant2" style="background-image: url('https://via.placeholder.com/50?text=Corn')" draggable="true"></div>
+        <div class="plant" id="plant3" style="background-image: url('https://via.placeholder.com/50?text=Strawberry')" draggable="true"></div>
+        <div class="plant" id="plant4" style="background-image: url('https://via.placeholder.com/50?text=Mango')" draggable="true"></div>
+        <div class="plant" id="plant5" style="background-image: url('https://via.placeholder.com/50?text=Pepper')" draggable="true"></div>
+        <div class="plant" id="plant6" style="background-image: url('https://via.placeholder.com/50?text=Grape')" draggable="true"></div>
+        <div class="plant" id="plant7" style="background-image: url('https://via.placeholder.com/50?text=Coconut')" draggable="true"></div>
+        <div class="plant" id="plant8" style="background-image: url('https://via.placeholder.com/50?text=Blueberry')" draggable="true"></div>
+        <div class="plant" id="plant9" style="background-image: url('https://via.placeholder.com/50?text=Cacao')" draggable="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spotlight-section scroll-reveal" id="spotlight">
+    <h2>Community Spotlight</h2>
+    <p>Check out amazing gardens created by players! Share yours on our <a href="https://discord.gg/bwahvr" target="_blank" style="color: #4169E1; text-decoration: none;">Discord</a>.</p>
+    <div class="spotlight-item">
+      <p>"My first garden with a mix of sunflowers and tomatoes! So relaxing! - @GreenVRFan"</p>
+    </div>
+    <div class="spotlight-item">
+      <p>"Unlocked a rare blue rose today! Loving the grind! - @VRGamer99"</p>
+    </div>
+  </section>
+
   <section class="bottom-section scroll-reveal" id="download">
     <h2>Start Your Adventure!</h2>
     <p>Download BWAH VR now and embark on a gardening journey on Meta Quest. Unleash your virtual green thumb today!</p>
@@ -656,6 +793,12 @@
     <p style="margin-top: 15px;">
       <a href="https://sites.google.com/view/bwah/home" target="_blank" style="color: #4169E1; text-decoration: none; font-weight: 500; transition: all 0.2s ease;">Privacy Policy</a>
     </p>
+    <div class="sound-control">
+      <label class="sound-toggle">
+        <input type="checkbox" id="soundToggle" checked> Toggle Nature Sounds
+      </label>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" class="volume-slider">
+    </div>
     <p style="margin-top: 10px; font-size: 0.9em; color: #95a5a6;">
       Created by <span style="color: #4169E1; font-weight: 500;">swaq</span> (@swaqwtf)
     </p>
@@ -790,6 +933,58 @@
           });
         }
       });
+    });
+    
+    // Garden Planner Drag and Drop
+    const dropZone = document.getElementById('dropZone');
+    const plants = document.querySelectorAll('.plant');
+    
+    plants.forEach(plant => {
+      plant.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', plant.outerHTML); // Store the full HTML of the plant
+      });
+    });
+    
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const plantHTML = e.dataTransfer.getData('text');
+      if (plantHTML) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(plantHTML, 'text/html');
+        const plantElement = doc.querySelector('.plant');
+        if (plantElement) {
+          const clone = plantElement.cloneNode(true);
+          clone.style.position = 'absolute';
+          clone.style.left = (e.clientX - dropZone.offsetLeft - 25) + 'px';
+          clone.style.top = (e.clientY - dropZone.offsetTop - 25) + 'px';
+          dropZone.appendChild(clone);
+        }
+      }
+    });
+    
+    // Background Soundscapes
+    const soundToggle = document.getElementById('soundToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    let audio = new Audio('audios/nature.mp3');
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.play();
+    
+    soundToggle.addEventListener('change', () => {
+      if (soundToggle.checked) {
+        audio.volume = volumeSlider.value;
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+    
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
     });
   </script>
 </body>
