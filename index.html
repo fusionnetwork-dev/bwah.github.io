@@ -6,7 +6,20 @@
   <!-- Preload first image for faster initial display -->
   <link rel="preload" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&" as="image">
   <title>BWAH VR</title>
-  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&">
+  <!-- Favicon with fallback for broader compatibility -->
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&" sizes="32x32">
+  <link rel="apple-touch-icon" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&">
+  <!-- Open Graph metadata for Discord embed -->
+  <meta property="og:title" content="BWAH VR UNOFFICIAL SITE">
+  <meta property="og:description" content="BWAH VR UNOFFICIAL SITE">
+  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&">
+  <meta property="og:url" content="https://www.meta.com/experiences/bwah/9756772107679490/">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card metadata for additional compatibility -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BWAH VR UNOFFICIAL SITE">
+  <meta name="twitter:description" content="BWAH VR UNOFFICIAL SITE">
+  <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Fredoka:wght@300;400;500;600&display=swap');
     
@@ -283,20 +296,20 @@
     .gallery-display img {
       width: 100%;
       max-width: 550px;
-      height: auto; /* Preserve aspect ratio */
-      max-height: 350px; /* Cap height to avoid oversized images */
-      object-fit: contain; /* Ensure entire image is visible without cropping */
+      height: auto;
+      max-height: 350px;
+      object-fit: contain;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       transition: all 0.4s ease;
-      image-rendering: -webkit-optimize-contrast; /* Enhance sharpness */
-      filter: contrast(1.05) brightness(1.05); /* Subtle enhancement for clarity */
+      image-rendering: -webkit-optimize-contrast;
+      filter: contrast(1.05) brightness(1.05);
     }
     
     .gallery-display img:hover {
       transform: scale(1.05);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-      filter: contrast(1.1) brightness(1.1); /* Slightly stronger effect on hover */
+      filter: contrast(1.1) brightness(1.1);
     }
     
     .gallery-arrow {
@@ -572,7 +585,6 @@
       galleryImage.style.opacity = 0;
       setTimeout(() => {
         galleryImage.src = images[currentImageIndex];
-        // Update srcset dynamically to match current image
         galleryImage.srcset = `${images[currentImageIndex]} 1x, ${images[currentImageIndex]} 2x`;
         galleryImage.style.opacity = 1;
       }, 300);
@@ -620,7 +632,6 @@
       const scrolled = window.pageYOffset;
       const header = document.querySelector('.nav-bar');
       
-      // Header scroll effect
       if (header) {
         header.style.background = scrolled > 50 
           ? 'rgba(255, 255, 255, 0.98)' 
@@ -630,10 +641,8 @@
           : '0 2px 15px rgba(0, 0, 0, 0.1)';
       }
       
-      // Parallax background
       document.body.style.backgroundPosition = `center ${scrolled * 0.3}px`;
       
-      // Trigger reveal animations
       revealOnScroll();
       
       ticking = false;
@@ -646,11 +655,9 @@
       }
     }
     
-    // Event listeners
     window.addEventListener('scroll', requestTick, { passive: true });
     window.addEventListener('load', revealOnScroll);
     
-    // Button bounce effect
     document.querySelectorAll('.download-btn').forEach(btn => {
       btn.addEventListener('mouseenter', function() {
         this.style.animation = 'bounce 0.5s ease';
@@ -660,7 +667,6 @@
       });
     });
     
-    // Smooth scroll for anchor links
     document.querySelectorAll('.nav-menu a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
