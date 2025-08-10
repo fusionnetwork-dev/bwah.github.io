@@ -389,6 +389,76 @@
       }
     }
     
+    .reviews-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 30px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .reviews-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8em;
+      background: linear-gradient(135deg, #4169E1, #87CEEB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      transform: rotate(-1deg);
+    }
+    
+    .rating {
+      font-size: 1.5em;
+      color: #34495e;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .stars {
+      display: inline-block;
+      color: #ffca08;
+      font-size: 1.8em;
+      margin-left: 10px;
+    }
+    
+    .review {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .review:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .review p {
+      color: #34495e;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+    
+    .review .author {
+      font-weight: 500;
+      color: #4169E1;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    
+    .review .rating-stars {
+      color: #ffca08;
+      font-size: 1.2em;
+      margin-top: 5px;
+    }
+    
     @media (max-width: 768px) {
       .nav-content {
         flex-direction: column;
@@ -425,6 +495,14 @@
         max-width: 400px;
         max-height: 250px;
       }
+      
+      .reviews-section h2 {
+        font-size: 2.2em;
+      }
+      
+      .review {
+        padding: 15px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -454,6 +532,22 @@
         width: 50px;
         height: 50px;
         font-size: 1.5em;
+      }
+      
+      .reviews-section h2 {
+        font-size: 1.8em;
+      }
+      
+      .rating {
+        font-size: 1.2em;
+      }
+      
+      .stars {
+        font-size: 1.5em;
+      }
+      
+      .review {
+        padding: 10px;
       }
     }
   </style>
@@ -530,6 +624,24 @@
       <p>Your garden evolves daily! Uncover rare plants, unlock new areas, and experiment with unique combinations to build the most spectacular garden imaginable.</p>
     </div>
   </div>
+
+  <section class="reviews-section scroll-reveal" id="reviews">
+    <h2>Player Reviews</h2>
+    <div class="rating">Average Rating: <span id="avgRating">3.5</span> <span class="stars" id="ratingStars">★★★☆☆</span> (based on 2,203 ratings: 54% 5-star, 7% 4-star, 6% 3-star, 5% 2-star, 28% 1-star)</div>
+    <div class="review">
+      <p>"I Rate this a 5 star The reason I rate this a 5 star is witch because I wanted grow a garden in vr and it happened I just started this game I’m im sure it’s very fun been seeing videos all over tiktok telling me to download beach in witch I did I was so exited to play I’m not playing right now cause I’m watching season 3 in squid game"</p>
+      <div class="author">— zirskeez <span class="rating-stars">★★★★★</span> (Jun 28 at 8:33 PM)</div>
+    </div>
+    <div class="review">
+      <p>"One of the best games I have rn 1. It’s easy and simple 2. Most of the people are friendly 3. The plants grow so fast which is really good And 4. Overall best gag fan game. Also if you rate this game below a four please don’t, this game is very new came out like 10 to 14 days ago so please do not rage it low it will have bugs"</p>
+      <div class="author">— ssunny <span class="rating-stars">★★★★★</span> (Jul 6 at 11:23 AM)</div>
+    </div>
+    <div class="review">
+      <p>"Bwah is goated game 🐐🐐🐐🐐 This game is very addictive and fun to grind which is good because you will need to grind a lot slow but rewarding one compliant is they need to buff blueberry and tomato because the sell for the same amount as strawberries but overall 20/10"</p>
+      <div class="author">— hendrcal <span class="rating-stars">★★★★★</span> (Jun 30 at 8:11 AM)</div>
+    </div>
+    <p style="font-size: 0.9em; color: #7f8c8d; margin-top: 15px;">See all reviews on <a href="https://www.meta.com/experiences/bwah/9756772107679490/#reviews" target="_blank" style="color: #4169E1; text-decoration: none;">Meta Quest Store</a></p>
+  </section>
 
   <section class="bottom-section scroll-reveal" id="download">
     <h2>Start Your Adventure!</h2>
