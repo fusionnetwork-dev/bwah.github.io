@@ -4,22 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Preload first image for faster initial display -->
-  <link rel="preload" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&" as="image">
+  <link rel="preload" href="photos/image1.jpg" as="image">
   <title>BWAH VR</title>
   <!-- Favicon with fallback for broader compatibility -->
   <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&" sizes="32x32">
   <link rel="apple-touch-icon" href="https://cdn.discordapp.com/attachments/1400222624956547182/1403977607476805763/651b52ecf0f3d7b6728c050bfa0e0763.png?ex=6899838a&is=6898320a&hm=b370028a6c75db5898af75ee38923709bebf7f91aba2603843190d7325175aaf&">
   <!-- Open Graph metadata for Discord embed -->
   <meta property="og:title" content="BWAH VR UNOFFICIAL SITE">
-  <meta property="og:description" content="BWAH VR UNOFFICIAL SITE">
-  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&">
+  <meta property="og:description" content="BWAH VR UNOFFICIAL SITE - Step into the world of Bwah, where your green thumb brings life to a charming garden full of endless possibilities.">
+  <meta property="og:image" content="photos/image1.jpg">
   <meta property="og:url" content="https://www.meta.com/experiences/bwah/9756772107679490/">
   <meta property="og:type" content="website">
   <!-- Twitter Card metadata for additional compatibility -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BWAH VR UNOFFICIAL SITE">
-  <meta name="twitter:description" content="BWAH VR UNOFFICIAL SITE">
-  <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&">
+  <meta name="twitter:description" content="BWAH VR UNOFFICIAL SITE - Step into the world of Bwah, where your green thumb brings life to a charming garden full of endless possibilities.">
+  <meta name="twitter:image" content="photos/image1.jpg">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Fredoka:wght@300;400;500;600&display=swap');
     
@@ -481,9 +481,8 @@
       <button class="gallery-arrow gallery-prev" onclick="changeImage(-1)">‹</button>
       <div class="gallery-display">
         <img id="gallery-image" 
-             src="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&" 
-             srcset="https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5& 1x, 
-                     https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5& 2x"
+             src="photos/image1.jpg" 
+             srcset="photos/image1.jpg 1x, photos/image1.jpg 2x"
              sizes="(max-width: 768px) 400px, (max-width: 480px) 300px, 550px"
              alt="BWAH VR screenshot">
         <div class="gallery-dots">
@@ -553,12 +552,12 @@
   <script>
     // Gallery functionality
     const images = [
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403974102116601937/491819511_1236263458241267_4845751526613337593_n.jpg?ex=68998046&is=68982ec6&hm=be8bd84c1ead7aa2375473b4d7f0eacfe143694c205eb15f65d4aa301f3760d5&",
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403974072987025418/491823968_928694079425438_2120244631637651714_n.jpg?ex=6899803f&is=68982ebf&hm=bda0b986385f2e34cb530ebb1ed6f05e9e3005544b8036e639abcd8ea3cfedef&",
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973914727551079/491822045_24192532300396728_714974890015067677_n.jpg?ex=68998019&is=68982e99&hm=8a335bf3a2ab329353a44f67b8f842d6ade3d1f1793d70893b00c348e29fce18&",
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973859564064839/491822467_1373443673755731_7279007955872785569_n.jpg?ex=6899800c&is=68982e8c&hm=42b3e1aa794b575e245cb6d19c2bb782b76ad396e8cbcc22cd55f4945a75b710&",
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973833358184520/491818943_3603985879896869_2753622102937368121_n.jpg?ex=68998006&is=68982e86&hm=ccfe71710df8704cee0400156633bf244d4e363ba739cba2cfcbe9acb8997959&",
-      "https://cdn.discordapp.com/attachments/1400222624956547182/1403973813258944542/491820047_3932586006958921_4620117588743480830_n.jpg?ex=68998001&is=68982e81&hm=a9be48c693154f86512812cf69a2bb86f3c7b5a48fa264c81e7d2aeb9f1d3eae&"
+      "photos/image1.jpg",
+      "photos/image2.jpg",
+      "photos/image3.jpg",
+      "photos/image4.jpg",
+      "photos/image5.jpg",
+      "photos/image6.jpg"
     ];
     
     let currentImageIndex = 0;
